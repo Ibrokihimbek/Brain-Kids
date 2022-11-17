@@ -7,7 +7,6 @@ import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/utils/app_routes.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/change_name_widget.dart';
-import 'package:kids_brain/widgets/media_query_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../local_data/storage_repository.dart';
@@ -41,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 decoration: const BoxDecoration(),
                 width: double.infinity,
-                height: AppHeight(context: context, size: 0.21),
+                height: MediaQuery.of(context).size.height * 0.21.h,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, top: 60).r,
                   child: Column(
@@ -53,7 +52,8 @@ class _HomePageState extends State<HomePage> {
                             style: fontSourceSansProW600(
                                     appcolor: AppColors.C_FFFFFF)
                                 .copyWith(
-                              fontSize: AppHeight(context: context, size: 0.03),
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.03.h,
                             ),
                           ),
                           Text(
@@ -61,7 +61,8 @@ class _HomePageState extends State<HomePage> {
                             style: fontSourceSansProW600(
                                     appcolor: AppColors.C_FFFFFF)
                                 .copyWith(
-                              fontSize: AppHeight(context: context, size: 0.03),
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.03.h,
                             ),
                           ),
                         ],
@@ -77,15 +78,15 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(
-                        AppHeight(context: context, size: 0.04),
+                        MediaQuery.of(context).size.height * 0.04.h,
                       ),
                       topRight: Radius.circular(
-                        AppHeight(context: context, size: 0.04),
+                        MediaQuery.of(context).size.height * 0.04.h,
                       ),
                     ),
                   ),
                   width: double.infinity,
-                  height: AppHeight(context: context, size: 0.7080),
+                  height: MediaQuery.of(context).size.height * 0.7080.h,
                   child: Padding(
                     padding: const EdgeInsets.all(12).r,
                     child: Column(
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                         SizedBox(
-                          height: AppHeight(context: context, size: 0.06),
+                          height: MediaQuery.of(context).size.height * 0.04.h,
                         ),
                         buttonLarge(
                             onTap: () {
@@ -129,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                             buttonName: 'Change name'.tr(),
                             buttonNameColor: AppColors.C_FFFFFF),
                         SizedBox(
-                          height: AppHeight(context: context, size: 0.012),
+                          height: MediaQuery.of(context).size.height * 0.012.h,
                         ),
                         buttonLarge(
                             onTap: () {
@@ -165,25 +166,25 @@ class _HomePageState extends State<HomePage> {
           }
         },
         child: Container(
-          width: AppWidth(context: context, size: 0.163),
-          height: AppHeight(context: context, size: 0.132),
+          width: MediaQuery.of(context).size.width * 0.163.h,
+          height: MediaQuery.of(context).size.height * 0.132.h,
           decoration: BoxDecoration(
             color: AppColors.C_F5F6FC,
             borderRadius: BorderRadius.circular(
-              AppHeight(context: context, size: 0.04),
+             MediaQuery.of(context).size.height * 0.04.h,
             ),
           ),
           child: Column(
             children: [
               SizedBox(
-                width: AppWidth(context: context, size: 0.25),
-                height: AppHeight(context: context, size: 0.12),
+                width: MediaQuery.of(context).size.width * 0.25.h,
+                height: MediaQuery.of(context).size.height * 0.12.h,
                 child: Image.asset(
                   task.imageName,
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(height: AppHeight(context: context, size: 0.024)),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.024.h),
               Text(
                 task.taskName.tr(),
                 style: fontSourceSansProW400(appcolor: AppColors.C_000000),
