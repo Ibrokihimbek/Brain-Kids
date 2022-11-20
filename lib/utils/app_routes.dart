@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kids_brain/screens/home_page.dart';
 import 'package:kids_brain/screens/login_page.dart';
-import 'package:kids_brain/screens/questions_screens/arabic_question_page.dart';
-import 'package:kids_brain/screens/questions_screens/english_question_page.dart';
-import 'package:kids_brain/screens/questions_screens/mathematic_question_page.dart';
-import 'package:kids_brain/screens/questions_screens/russian_question_page.dart';
+import 'package:kids_brain/screens/questions_screens/arabic/arabic_question_page.dart';
+import 'package:kids_brain/screens/questions_screens/english/english_question_page.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/mathematic_question_page.dart';
+import 'package:kids_brain/screens/questions_screens/russian/russian_question_page.dart';
 import 'package:kids_brain/screens/splash_page.dart';
 
 abstract class RoutName {
@@ -29,11 +29,26 @@ class AppRoutes {
       case RoutName.login:
         return MaterialPageRoute(builder: (_) => LoginPage());
       case RoutName.english:
-        return MaterialPageRoute(builder: (_) => EnglishQuestionPage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => EnglishQuestionPage(
+            english: args['englishAlphabet'],
+          ),
+        );
       case RoutName.arabic:
-        return MaterialPageRoute(builder: (_) => ArabicQuestionPage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => ArabicQuestionPage(
+            arabic: args['arabicAlphabet'],
+          ),
+        );
       case RoutName.russian:
-        return MaterialPageRoute(builder: (_) => RussianQuestionPage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => RussianQuestionPage(
+            russian: args['russianAlphabet'],
+          ),
+        );
       case RoutName.mathematic:
         return MaterialPageRoute(builder: (_) => MathematicQuestionPage());
       case RoutName.home:

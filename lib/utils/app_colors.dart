@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 
 class AppColors {
+  AppColors._();
   static const C_2855AE = Color(0xff2855AE);
   static const C_7292CF = Color(0xff7292CF);
   static const C_FFFFFF = Color(0xffFFFFFF);

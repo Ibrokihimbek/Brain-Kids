@@ -18,5 +18,11 @@
     "Arabic alphabet" : "Arab tili alifbosi",
     "Russian alphabet" : "Rus tili alifbosi",
     "Change the language" : "Tilni o'zgartiring",
-    "Hi":"Salom"
+    "Hi":"Salom",
+    "Try again" : "Qayta boshlassh",
+    "Return to the main window":"Asosiy oynaga qaytish",
+    "Game over" : "O'yin tugadi",
+    "Congratulations" : "Tabriklaymiz",
+    "You have won" : "Siz g'alaba qozondingiz"
+
 }

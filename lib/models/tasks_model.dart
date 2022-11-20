@@ -1,5 +1,4 @@
 import 'package:kids_brain/utils/app_images.dart';
-import "dart:math";
 
 class TasksModels {
   String imageName;
@@ -18,33 +17,4 @@ class TasksModels {
         taskName: 'Russian language'),
     TasksModels(imageName: AppImages.imageMathematic, taskName: 'Numbers'),
   ];
-  static List english1 = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
 }
-

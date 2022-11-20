@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kids_brain/models/arabic/arabic_alphabet_model.dart';
+import 'package:kids_brain/models/english/english_alphabet_model.dart';
+import 'package:kids_brain/models/rusian/russian_alphabet_model.dart';
 import 'package:kids_brain/models/tasks_model.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
@@ -192,11 +195,17 @@ class _HomePageState extends State<HomePage> {
       child: InkWell(
         onTap: () {
           if (index == 0) {
-            Navigator.pushNamed(context, RoutName.english);
+            Navigator.pushNamed(context, RoutName.english, arguments: {
+              'englishAlphabet': EnglishAlphabetModel.aplphabetList
+            });
           } else if (index == 1) {
-            Navigator.pushNamed(context, RoutName.arabic);
+            Navigator.pushNamed(context, RoutName.arabic, arguments: {
+              'arabicAlphabet': ArabicAlphabetModel.aplphabetList
+            });
           } else if (index == 2) {
-            Navigator.pushNamed(context, RoutName.russian);
+            Navigator.pushNamed(context, RoutName.russian, arguments: {
+              'russianAlphabet': RussianAlphabetModel.aplphabetList
+            });
           } else if (index == 3) {
             Navigator.pushNamed(context, RoutName.mathematic);
           }
