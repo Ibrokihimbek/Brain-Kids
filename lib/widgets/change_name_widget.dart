@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
-import 'package:kids_brain/widgets/media_query_widget.dart';
 
 class ChangeNameWidget extends StatefulWidget {
   ValueChanged<TextEditingController> newName;
@@ -63,7 +62,7 @@ class _ChangeNameWidgetState extends State<ChangeNameWidget> {
                     border: const OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: AppHeight(context: context, size: 0.02)),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02.h,),
                 buttonLarge(
                   onTap: () {
                     widget.newName(cantrollerEditName);
@@ -72,7 +71,7 @@ class _ChangeNameWidgetState extends State<ChangeNameWidget> {
                   buttonName: 'Edit'.tr(),
                   buttonNameColor: AppColors.C_FFFFFF,
                 ),
-                SizedBox(height: AppHeight(context: context, size: 0.01)),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01.h,),
                 buttonLarge(
                   onTap: () {
                     Navigator.pop(context);

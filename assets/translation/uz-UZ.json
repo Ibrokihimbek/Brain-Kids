@@ -1,5 +1,5 @@
 {
-    "BRAIN\nKIDS" : "AQLLI/nBOLALAR",
+    "Brain\nKids" : "AQLLI BOLALAR",
     "Register" : "Roʻyxatdan oʻtish",
     "Enter your Name" : "Ismingizni kiriting",
     "Please enter your name" : "Iltimos, ismingizni kiriting",
@@ -16,5 +16,7 @@
     "Cancel" : "Bekor qilish",
     "English alphabet" : "Ingliz tili alifbosi",
     "Arabic alphabet" : "Arab tili alifbosi",
-    "Russian alphabet" : "Rus tili alifbosi"
+    "Russian alphabet" : "Rus tili alifbosi",
+    "Change the language" : "Tilni o'zgartiring",
+    "Hi":"Salom"
 }

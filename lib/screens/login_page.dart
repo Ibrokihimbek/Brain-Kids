@@ -5,9 +5,7 @@ import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
-import 'package:kids_brain/widgets/media_query_widget.dart';
 
-import 'package:kids_brain/widgets/textfield_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../local_data/storage_repository.dart';
@@ -52,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     width: double.infinity,
-                    height: AppHeight(context: context, size: 0.40),
+                    height: MediaQuery.of(context).size.height * 0.40.h,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 75, left: 50).r,
                     ),
@@ -62,33 +60,35 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(
-                          AppHeight(context: context, size: 0.04),
+                          MediaQuery.of(context).size.height * 0.04.h,
                         ),
                         topRight: Radius.circular(
-                          AppHeight(context: context, size: 0.04),
+                          MediaQuery.of(context).size.height * 0.04.h,
                         ),
                       ),
                     ),
                     width: double.infinity.w,
-                    height: AppHeight(context: context, size: 0.504),
+                    height: MediaQuery.of(context).size.height * 0.504.h,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50).r,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: AppHeight(context: context, size: 0.036),
+                            height:
+                                MediaQuery.of(context).size.height * 0.036.h,
                           ),
                           Text(
                             'Register'.tr(),
                             style: fontSourceSansPro700(
                                     appcolor: AppColors.C_000000)
                                 .copyWith(
-                              fontSize: AppHeight(context: context, size: 0.03),
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.03.h,
                             ),
                           ),
                           SizedBox(
-                            height: AppHeight(context: context, size: 0.028),
+                            height: MediaQuery.of(context).size.height * 0.028.h,
                           ),
                           TextFormField(
                             controller: myController,
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           SizedBox(
-                            height: AppHeight(context: context, size: 0.18),
+                            height: MediaQuery.of(context).size.height * 0.18.h,
                           ),
                           buttonLarge(
                             onTap: () {

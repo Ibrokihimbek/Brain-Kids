@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kids_brain/models/english_alphabet_model.dart';
 import 'package:kids_brain/models/tasks_model.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
-import 'package:kids_brain/widgets/media_query_widget.dart';
 
 class EnglishQuestionPage extends StatefulWidget {
   const EnglishQuestionPage({super.key});
@@ -14,11 +14,10 @@ class EnglishQuestionPage extends StatefulWidget {
   State<EnglishQuestionPage> createState() => _EnglishQuestionPageState();
 }
 
-String alphabet = 'A';
-Color button = AppColors.C_FDC642;
-List english = shuffle(TasksModels.english1);
-
 class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
+  String alphabet = 'A';
+  Color button = AppColors.C_FDC642;
+  List english = shuffle(EnglishAlphabet.aplphabetList);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +30,7 @@ class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
               Container(
                 decoration: const BoxDecoration(),
                 width: double.infinity,
-                height: AppHeight(context: context, size: 0.136),
+                height: MediaQuery.of(context).size.height * 0.148.h,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, top: 10).r,
                   child: Column(
@@ -41,7 +40,7 @@ class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
                         style:
                             fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                                 .copyWith(
-                          fontSize: AppHeight(context: context, size: 0.03),
+                          fontSize: MediaQuery.of(context).size.height * 0.03.h,
                         ),
                       ),
                       Image.asset(AppImages.imageStars),
@@ -58,9 +57,7 @@ class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
                   crossAxisCount: 4,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return englishAlphabetlist(
-                    english[index], index
-                  );
+                  return englishAlphabetlist(english[index]);
                 },
               ),
             ],
@@ -70,39 +67,33 @@ class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
     );
   }
 
-  Widget englishAlphabetlist(String english, index) {
+  Widget englishAlphabetlist(EnglishAlphabet english) {
     return Padding(
       padding: const EdgeInsets.all(6).r,
       child: InkWell(
         borderRadius: BorderRadius.circular(
-          AppHeight(context: context, size: 0.04),
+          MediaQuery.of(context).size.height * 0.04.h,
         ),
         onTap: () {
-          setState(
-            () {
-              if (english == alphabet) {
-                button = AppColors.C_0BAC00;
-                int fromascii = alphabet.codeUnitAt(0) + 1;
-                alphabet = String.fromCharCode(fromascii);
-              } else {
-                button = AppColors.C_E92020;
-              }
-            },
-          );
+          setState(() {
+           
+          });
         },
         child: Container(
+          width: MediaQuery.of(context).size.width * 0.199.w,
+          height: MediaQuery.of(context).size.height * 0.1.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
-              AppHeight(context: context, size: 0.04),
+              MediaQuery.of(context).size.height * 0.04.h,
             ),
             color: button,
           ),
           child: Center(
             child: Text(
-              english,
+              english.letter,
               style:
                   fontSourceSansProW600(appcolor: AppColors.C_FFFFFF).copyWith(
-                fontSize: AppHeight(context: context, size: 0.05),
+                fontSize: MediaQuery.of(context).size.height * 0.05.h,
               ),
             ),
           ),
@@ -111,3 +102,7 @@ class _EnglishQuestionPageState extends State<EnglishQuestionPage> {
     );
   }
 }
+
+
+// int fromascii = alphabet.codeUnitAt(0) + 1;
+//                 alphabet = String.fromCharCode(fromascii);

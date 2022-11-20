@@ -7,6 +7,7 @@ import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/utils/app_routes.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/change_name_widget.dart';
+import 'package:kids_brain/widgets/settings_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../local_data/storage_repository.dart';
@@ -18,6 +19,8 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -33,6 +36,20 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       child: Scaffold(
+        key: scaffoldKey,
+        drawer: Drawer(
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.C_7292CF,
+                  AppColors.C_2855AE,
+                ],
+              ),
+            ),
+            child: const SettingsWidget(),
+          ),
+        ),
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Column(
@@ -46,23 +63,42 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Hi",
-                            style: fontSourceSansProW600(
-                                    appcolor: AppColors.C_FFFFFF)
-                                .copyWith(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.03.h,
+                          IconButton(
+                            onPressed: () =>
+                                scaffoldKey.currentState!.openDrawer(),
+                            icon: Icon(
+                              Icons.menu_rounded,
+                              color: AppColors.C_FFFFFF,
+                              size: MediaQuery.of(context).size.height * 0.045,
                             ),
                           ),
-                          Text(
-                            " $name",
-                            style: fontSourceSansProW600(
-                                    appcolor: AppColors.C_FFFFFF)
-                                .copyWith(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.03.h,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20).r,
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Hi".tr(),
+                                  style: fontSourceSansProW600(
+                                          appcolor: AppColors.C_FFFFFF)
+                                      .copyWith(
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.03.h,
+                                  ),
+                                ),
+                                Text(
+                                  " $name",
+                                  style: fontSourceSansProW600(
+                                          appcolor: AppColors.C_FFFFFF)
+                                      .copyWith(
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.03.h,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -171,7 +207,7 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             color: AppColors.C_F5F6FC,
             borderRadius: BorderRadius.circular(
-             MediaQuery.of(context).size.height * 0.04.h,
+              MediaQuery.of(context).size.height * 0.04.h,
             ),
           ),
           child: Column(
