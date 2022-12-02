@@ -1,27 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kids_brain/local_data/storage_repository.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
+import 'package:kids_brain/utils/app_media_query.dart';
+import 'package:kids_brain/screens/app_routes.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../local_data/storage_repository.dart';
-import '../utils/app_routes.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+class LoginPage extends StatelessWidget {
+LoginPage({super.key});
 
-class _LoginPageState extends State<LoginPage> {
   final myController = TextEditingController();
+
   final _key = GlobalKey<FormState>();
+
   bool isPass = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,9 +49,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.40.h,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 75, left: 50).r,
+                    height: MediaQuery.of(context).size.height * 0.40,
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 75, left: 50),
                     ),
                   ),
                   Container(
@@ -60,41 +59,40 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(
-                          MediaQuery.of(context).size.height * 0.04.h,
+                          queryHeight(context) * 0.04,
                         ),
                         topRight: Radius.circular(
-                          MediaQuery.of(context).size.height * 0.04.h,
+                          queryHeight(context) * 0.04,
                         ),
                       ),
                     ),
-                    width: double.infinity.w,
-                    height: MediaQuery.of(context).size.height * 0.504.h,
+                    width: double.infinity,
+                    height: queryHeight(context) * 0.9,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50).r,
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 0.036.h,
+                            height: queryHeight(context) * 0.036,
                           ),
                           Text(
                             'Register'.tr(),
                             style: fontSourceSansPro700(
                                     appcolor: AppColors.C_000000)
                                 .copyWith(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.03.h,
+                              fontSize: queryHeight(context) * 0.03,
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.028.h,
+                            height: queryHeight(context) * 0.028,
                           ),
                           TextFormField(
                             controller: myController,
                             validator: (value) {
-                              if (value == null || value.isEmpty)
+                              if (value == null || value.isEmpty) {
                                 return 'Please enter your name'.tr();
+                              }
                             },
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.text,
@@ -105,9 +103,10 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.18.h,
+                            height: queryHeight(context) * 0.18,
                           ),
                           buttonLarge(
+                            context: context,
                             onTap: () {
                               if (_key.currentState!.validate()) {
                                 FocusManager.instance.primaryFocus?.unfocus();
@@ -133,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void saveLogin(context) async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    _pref.setBool("isLoggedIn", true);
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLoggedIn", true);
 
     Navigator.pushNamedAndRemoveUntil(context, RoutName.home, (route) => false);
   }

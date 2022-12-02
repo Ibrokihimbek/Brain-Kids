@@ -15,6 +15,6 @@ class TasksModels {
     TasksModels(
         imageName: AppImages.imageAlphabetRussian,
         taskName: 'Russian language'),
-    TasksModels(imageName: AppImages.imageMathematic, taskName: 'Numbers'),
+    TasksModels(imageName: AppImages.imageMathematic, taskName: 'Mathematics'),
   ];
 }

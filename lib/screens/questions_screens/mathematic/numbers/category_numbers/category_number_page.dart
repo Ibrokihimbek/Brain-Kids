@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_brain/models/arabic/arabic_alphabet_model.dart';
+import 'package:kids_brain/models/numbers/numbers_list.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/numbers/category_numbers/widgets/number_gridview_widget.dart';
 import 'package:kids_brain/service/shuffle.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
@@ -8,22 +9,21 @@ import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 import 'package:kids_brain/widgets/gridvew_alphabet_widget.dart';
 
-class ArabicQuestionPage extends StatefulWidget {
-  List<ArabicAlphabetModel> arabic;
-
-  ArabicQuestionPage({super.key, required this.arabic});
+class NumbersCategoryPage extends StatefulWidget {
+  List<Numbers> numbers;
+  NumbersCategoryPage({super.key, required this.numbers});
 
   @override
-  State<ArabicQuestionPage> createState() => _ArabicQuestionPageState();
+  State<NumbersCategoryPage> createState() => _NumbersCategoryPageState();
 }
 
-class _ArabicQuestionPageState extends State<ArabicQuestionPage> {
-  List arabicAlphabet = [];
+class _NumbersCategoryPageState extends State<NumbersCategoryPage> {
+  List numbersCategory = [];
   @override
   void initState() {
     super.initState();
-    arabicAlphabet = shuffle(ArabicAlphabetModel.aplphabetList);
-    for (var element in arabicAlphabet) {
+    numbersCategory = shuffle(widget.numbers);
+    for (var element in numbersCategory) {
       element.onSelected = null;
     }
   }
@@ -49,13 +49,13 @@ class _ArabicQuestionPageState extends State<ArabicQuestionPage> {
                 Container(
                   decoration: const BoxDecoration(),
                   width: double.infinity,
-                  height: queryHeight(context) * 0.18,
+                  height: queryHeight(context) * 0.148,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, top: 10),
                     child: Column(
                       children: [
                         Text(
-                          "Arabic alphabet".tr(),
+                          "Numbers".tr(),
                           style: fontSourceSansProW600(
                                   appcolor: AppColors.C_FFFFFF)
                               .copyWith(
@@ -67,13 +67,13 @@ class _ArabicQuestionPageState extends State<ArabicQuestionPage> {
                     ),
                   ),
                 ),
-                GridvewAlphabetsWidget(
-                  alphabets: arabicAlphabet,
-                  letter: "ا",
-                  alphabetModel: widget.arabic,
-                  lastLetter: lastLetter(),
-                  constantLetter: "ا",
-                ),
+                NumbersGridViewWidget(
+                  constantNumbers: 1,
+                  lastNumbers: 11,
+                  mathematics: numbersCategory,
+                  numbers: 1,
+                  numbersModel: widget.numbers,
+                )
               ],
             ),
           ),
@@ -81,10 +81,4 @@ class _ArabicQuestionPageState extends State<ArabicQuestionPage> {
       ),
     );
   }
-}
-
-lastLetter() {
-  String lastLetter = 'ي';
-  int ascii = lastLetter.codeUnitAt(0) + 1;
-  return lastLetter = String.fromCharCode(ascii);
 }

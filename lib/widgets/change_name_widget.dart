@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_brain/utils/app_colors.dart';
+import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/button_widget.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 
@@ -24,23 +24,25 @@ class _ChangeNameWidgetState extends State<ChangeNameWidget> {
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Expanded(
         child: Container(
-          padding: const EdgeInsets.all(24).r,
-          height: 340.h,
+          padding: const EdgeInsets.all(24),
+          height: queryHeight(context) * 0.545,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16.r),
-                topRight: Radius.circular(16.r),
+                topLeft: Radius.circular(queryHeight(context) * 0.026),
+                topRight: Radius.circular(queryHeight(context) * 0.026),
               ),
               color: AppColors.C_F5F6FC),
           child: Form(
             key: formKey,
             child: Column(
               children: [
-                Text('Change account name'.tr(),
-                    style: fontSourceSansProW400(appcolor: AppColors.C_000000)),
-                SizedBox(height: 10.h),
+                Text(
+                  'Change account name'.tr(),
+                  style: fontSourceSansProW400(appcolor: AppColors.C_A5A5A5),
+                ),
+                SizedBox(height: queryHeight(context) * 0.01),
                 const Divider(thickness: 1, color: AppColors.C_000000),
-                SizedBox(height: 16.h),
+                SizedBox(height: queryHeight(context) * 0.016),
                 TextFormField(
                   controller: cantrollerEditName,
                   textInputAction: TextInputAction.done,
@@ -49,21 +51,16 @@ class _ChangeNameWidgetState extends State<ChangeNameWidget> {
                     counterStyle: const TextStyle(color: AppColors.C_000000),
                     hintText: 'New name'.tr(),
                     hintStyle:
-                        fontSourceSansProW400(appcolor: AppColors.C_000000),
-                    filled: true,
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: AppColors.C_000000, width: 0.8),
-                    ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: AppColors.C_000000, width: 0.8),
-                    ),
-                    border: const OutlineInputBorder(),
+                        fontSourceSansProW400(appcolor: AppColors.C_A5A5A5),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02.h,),
+                SizedBox(
+                  height: queryHeight(context) * 0.02,
+                ),
                 buttonLarge(
+                  context: context,
                   onTap: () {
                     widget.newName(cantrollerEditName);
                     Navigator.pop(context);
@@ -71,8 +68,11 @@ class _ChangeNameWidgetState extends State<ChangeNameWidget> {
                   buttonName: 'Edit'.tr(),
                   buttonNameColor: AppColors.C_FFFFFF,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01.h,),
+                SizedBox(
+                  height: queryHeight(context) * 0.01,
+                ),
                 buttonLarge(
+                  context: context,
                   onTap: () {
                     Navigator.pop(context);
                   },

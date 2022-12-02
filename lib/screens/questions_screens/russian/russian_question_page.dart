@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_brain/models/rusian/russian_alphabet_model.dart';
 import 'package:kids_brain/service/shuffle.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
+import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 import 'package:kids_brain/widgets/gridvew_alphabet_widget.dart';
 
@@ -49,17 +49,17 @@ class _RussianQuestionPageState extends State<RussianQuestionPage> {
                 Container(
                   decoration: const BoxDecoration(),
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.136.h,
+                  height: queryHeight(context) * 0.18,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 10).r,
+                    padding: const EdgeInsets.only(left: 10, top: 5),
                     child: Column(
                       children: [
                         Text(
                           "Russian alphabet".tr(),
-                          style:
-                              fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
-                                  .copyWith(
-                            fontSize: MediaQuery.of(context).size.height * 0.03.h,
+                          style: fontSourceSansProW600(
+                                  appcolor: AppColors.C_FFFFFF)
+                              .copyWith(
+                            fontSize: MediaQuery.of(context).size.height * 0.03,
                           ),
                         ),
                         Image.asset(AppImages.imageStars),

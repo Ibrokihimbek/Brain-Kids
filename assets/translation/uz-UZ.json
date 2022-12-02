@@ -3,13 +3,13 @@
     "Register" : "Roʻyxatdan oʻtish",
     "Enter your Name" : "Ismingizni kiriting",
     "Please enter your name" : "Iltimos, ismingizni kiriting",
-    "English language": "Ingiliz tili",
+    "English language": "Ingliz tili",
     "Arabic language" : "Arab tili",
     "Russian language" : "Rus tili",
     "Numbers" : "Sonlar",
     "logout":"Chiqish",
     "Profile" : "Profil",
-    "Change name" : "Isimni o'zgartirish",
+    "Change name" : "Ismni o'zgartirish",
     "Change account name" : "Foydalanuvchi nomini o'zgartiring",
     "Edit" : "Tahrirlash",
     "New name" : "Yangi nom",
@@ -19,10 +19,12 @@
     "Russian alphabet" : "Rus tili alifbosi",
     "Change the language" : "Tilni o'zgartiring",
     "Hi":"Salom",
-    "Try again" : "Qayta boshlassh",
+    "Try again" : "Qayta boshlash",
     "Return to the main window":"Asosiy oynaga qaytish",
     "Game over" : "O'yin tugadi",
     "Congratulations" : "Tabriklaymiz",
-    "You have won" : "Siz g'alaba qozondingiz"
-
+    "You have won" : "Siz g'alaba qozondingiz",
+    "Mathematics" : "Matematika",
+    "Arithmetic operations" : "Arifmetik amallar",
+    "Choose your numbers level" : "Sonlarni bilish darajangizni tanlang"
 }

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 
@@ -26,21 +25,21 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       default:
     }
     return Container(
-      padding: const EdgeInsets.all(24).r,
-      height: 340.h,
+      padding: const EdgeInsets.all(24),
+      height: 340,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16.r),
-          topRight: Radius.circular(16.r),
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 40.h),
+          SizedBox(height: 40),
           Text('Change the language'.tr(),
               style: fontSourceSansProW400(appcolor: AppColors.C_FFFFFF)),
-          SizedBox(height: 12.h),
+          SizedBox(height: 12),
           RadioListTile(
             title: Text("O'zbekcha",
                 style: fontSourceSansProW400(appcolor: AppColors.C_FFFFFF)),

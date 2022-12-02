@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
-import 'package:kids_brain/utils/app_routes.dart';
+import 'package:kids_brain/utils/app_media_query.dart';
+import 'package:kids_brain/screens/app_routes.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,9 +18,9 @@ class _SplashPageState extends State<SplashPage> {
   bool isLog = false;
 
   Future<bool> isLoggedIn() async {
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    isLog = _pref.getBool("isLoggedIn") ?? false;
-    return _pref.getBool("isLoggedIn") ?? false;
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    isLog = pref.getBool("isLoggedIn") ?? false;
+    return pref.getBool("isLoggedIn") ?? false;
   }
 
   @override
@@ -59,7 +59,7 @@ class _SplashPageState extends State<SplashPage> {
             width: double.infinity,
             height: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(top: 160, bottom: 30).r,
+              padding: const EdgeInsets.only(top: 160, bottom: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -67,7 +67,7 @@ class _SplashPageState extends State<SplashPage> {
                     'Brain\nKids'.tr(),
                     textAlign: TextAlign.center,
                     style: fontSourceSansProW800(appcolor: AppColors.C_FFFFFF)
-                        .copyWith(fontSize: 40.sp),
+                        .copyWith(fontSize: queryHeight(context) * 0.04),
                   ),
                   Image.asset(AppImages.imageSplash),
                 ],

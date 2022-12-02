@@ -1,51 +1,52 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kids_brain/screens/app_routes.dart';
 import 'package:kids_brain/service/shuffle.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_loties.dart';
-import 'package:kids_brain/screens/app_routes.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 import 'package:lottie/lottie.dart';
 
-class GridvewAlphabetsWidget extends StatefulWidget {
-  List alphabets;
-  String letter;
-  String constantLetter;
-  var alphabetModel;
-  String lastLetter;
-  GridvewAlphabetsWidget({
+// ignore: must_be_immutable
+class NumbersGridViewWidget extends StatefulWidget {
+  List mathematics;
+  int numbers;
+  int constantNumbers;
+  var numbersModel;
+  int lastNumbers;
+  NumbersGridViewWidget({
     super.key,
-    required this.alphabets,
-    required this.letter,
-    required this.alphabetModel,
-    required this.lastLetter,
-    required this.constantLetter,
+    required this.mathematics,
+    required this.numbers,
+    required this.numbersModel,
+    required this.lastNumbers,
+    required this.constantNumbers,
   });
 
   @override
-  State<GridvewAlphabetsWidget> createState() => _GridvewAlphabetsWidgetState();
+  State<NumbersGridViewWidget> createState() => _NumbersGridViewWidgetState();
 }
 
-class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
+class _NumbersGridViewWidgetState extends State<NumbersGridViewWidget> {
   @override
   Widget build(BuildContext context) {
-    String firstLetter = widget.constantLetter;
+    int firstNumbers = widget.constantNumbers;
     return GridView.builder(
       shrinkWrap: true,
-      itemCount: widget.alphabets.length,
+      itemCount: widget.mathematics.length,
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return englishAlphabetlist(widget.alphabets[index], firstLetter);
+        return numbersList(widget.mathematics[index], firstNumbers);
       },
     );
   }
 
-  Widget englishAlphabetlist(var alphabet, String frisLetter) {
+  Widget numbersList(number, int frisNumbers) {
     return Padding(
       padding: const EdgeInsets.all(6),
       child: InkWell(
@@ -53,21 +54,12 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
           MediaQuery.of(context).size.height * 0.04,
         ),
         onTap: () async {
-          if (alphabet.letter == widget.letter) {
-            alphabet.onSelected = true;
-            int fromascii = widget.letter == 'ب'
-                ? (widget.letter.codeUnitAt(0) + 2)
-                : widget.letter == 'غ'
-                    ? (widget.letter.codeUnitAt(0) + 7)
-                    : widget.letter == 'و'
-                        ? (widget.letter.codeUnitAt(0) + 2)
-                        : widget.letter.codeUnitAt(0) == 1045
-                            ? (widget.letter.codeUnitAt(0) - 20)
-                            : widget.letter.codeUnitAt(0) == 1025
-                                ? (widget.letter.codeUnitAt(0) + 21)
-                                : (widget.letter.codeUnitAt(0) + 1);
-            widget.letter = String.fromCharCode(fromascii);
-            if (widget.letter == widget.lastLetter) {
+          if (number.numbers == widget.numbers) {
+            number.onSelected = true;
+            int num = widget.numbers + 1;
+
+            widget.numbers = num;
+            if (widget.numbers == widget.lastNumbers) {
               showDialog(
                 barrierDismissible: false,
                 context: context,
@@ -78,7 +70,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                   ),
                   content: Column(
                     children: [
-                      Lottie.asset(AppLoties.lotieCongratulation),
+                      Lottie.asset(AppLoties.lotieWin),
                       Text(
                         'You have won'.tr(),
                         style:
@@ -103,14 +95,14 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                     ),
                     TextButton(
                       onPressed: () {
-                        widget.letter = frisLetter;
+                        widget.numbers = frisNumbers;
                         setState(
                           () {
                             Navigator.pop(context);
                           },
                         );
-                        widget.alphabets = shuffle(widget.alphabetModel);
-                        for (var element in widget.alphabets) {
+                        widget.mathematics = shuffle(widget.numbersModel);
+                        for (var element in widget.mathematics) {
                           element.onSelected = null;
                         }
                       },
@@ -128,10 +120,10 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
               );
             }
           } else {
-            alphabet.onSelected = false;
+            number.onSelected = false;
             setState(() {});
 
-            widget.letter = frisLetter;
+            widget.numbers = frisNumbers;
             await Future.delayed(const Duration(milliseconds: 800));
 
             showDialog(
@@ -142,7 +134,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                   "Game over".tr(),
                   style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
                 ),
-                content: Lottie.asset(AppLoties.lotieCry),
+                content: Lottie.asset(AppLoties.lotieCryBear),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -165,8 +157,8 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                           Navigator.pop(context);
                         },
                       );
-                      widget.alphabets = shuffle(widget.alphabetModel);
-                      for (var element in widget.alphabets) {
+                      widget.mathematics = shuffle(widget.numbersModel);
+                      for (var element in widget.mathematics) {
                         element.onSelected = null;
                       }
                     },
@@ -192,15 +184,15 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
             borderRadius: BorderRadius.circular(
               MediaQuery.of(context).size.height * 0.04,
             ),
-            color: alphabet.onSelected == null
+            color: number.onSelected == null
                 ? AppColors.C_FDC642
-                : alphabet.onSelected!
+                : number.onSelected!
                     ? AppColors.C_0BAC00
                     : AppColors.C_E92020,
           ),
           child: Center(
             child: Text(
-              alphabet.letter,
+              '${number.numbers}',
               style:
                   fontSourceSansProW600(appcolor: AppColors.C_FFFFFF).copyWith(
                 fontSize: MediaQuery.of(context).size.height * 0.05,
