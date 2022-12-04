@@ -46,7 +46,7 @@ class _NumbersGridViewWidgetState extends State<NumbersGridViewWidget> {
     );
   }
 
-  Widget numbersList(number, int frisNumbers) {
+  Widget numbersList(number, int fristNumbers) {
     return Padding(
       padding: const EdgeInsets.all(6),
       child: InkWell(
@@ -60,119 +60,27 @@ class _NumbersGridViewWidgetState extends State<NumbersGridViewWidget> {
 
             widget.numbers = num;
             if (widget.numbers == widget.lastNumbers) {
-              showDialog(
-                barrierDismissible: false,
+              showDialogWidget(
+                congratulations: 'Congratulations',
+                lottie: AppLoties.lottieWin,
+                winOrdefeat: 'You have won',
+                firstNumber: fristNumbers,
                 context: context,
-                builder: (ctx) => CupertinoAlertDialog(
-                  title: Text(
-                    "Congratulations".tr(),
-                    style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                  ),
-                  content: Column(
-                    children: [
-                      Lottie.asset(AppLoties.lotieWin),
-                      Text(
-                        'You have won'.tr(),
-                        style:
-                            fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, RoutName.home, (route) => false);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        child: Text(
-                          "Return to the main window".tr(),
-                          style: fontSourceSansProW400(
-                              appcolor: AppColors.C_000000),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        widget.numbers = frisNumbers;
-                        setState(
-                          () {
-                            Navigator.pop(context);
-                          },
-                        );
-                        widget.mathematics = shuffle(widget.numbersModel);
-                        for (var element in widget.mathematics) {
-                          element.onSelected = null;
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        child: Text(
-                          "Try again".tr(),
-                          style: fontSourceSansProW400(
-                              appcolor: AppColors.C_000000),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               );
             }
           } else {
             number.onSelected = false;
             setState(() {});
 
-            widget.numbers = frisNumbers;
+            // widget.numbers = fristNumbers;
             await Future.delayed(const Duration(milliseconds: 800));
 
-            showDialog(
-              barrierDismissible: false,
+            showDialogWidget(
+              congratulations: '',
+              lottie: AppLoties.lottieCryBear,
+              winOrdefeat: 'Game over',
               context: context,
-              builder: (ctx) => CupertinoAlertDialog(
-                title: Text(
-                  "Game over".tr(),
-                  style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                ),
-                content: Lottie.asset(AppLoties.lotieCryBear),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, RoutName.home, (route) => false);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(14),
-                      child: Text(
-                        "Return to the main window".tr(),
-                        style:
-                            fontSourceSansProW400(appcolor: AppColors.C_000000),
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(
-                        () {
-                          Navigator.pop(context);
-                        },
-                      );
-                      widget.mathematics = shuffle(widget.numbersModel);
-                      for (var element in widget.mathematics) {
-                        element.onSelected = null;
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(14),
-                      child: Text(
-                        "Try again".tr(),
-                        style:
-                            fontSourceSansProW400(appcolor: AppColors.C_000000),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              firstNumber: fristNumbers,
             );
           }
           setState(() {});
@@ -199,6 +107,78 @@ class _NumbersGridViewWidgetState extends State<NumbersGridViewWidget> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> showDialogWidget(
+      {required String winOrdefeat,
+      required String lottie,
+      required String congratulations,
+      required BuildContext context,
+      required int firstNumber}) {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+        title: Text(
+          winOrdefeat.tr(),
+          style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
+        ),
+        content: Column(
+          children: [
+            Lottie.asset(lottie),
+            Text(
+              congratulations.tr(),
+              style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
+            ),
+          ],
+        ),
+        actions: [
+          showDialogButton(
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RoutName.home, (route) => false);
+            },
+            word: "Return to the main page".tr(),
+          ),
+          showDialogButton(
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RoutName.numbers, (route) => false);
+            },
+            word: 'Back to the math page'.tr(),
+          ),
+          showDialogButton(
+            onTap: () {
+              widget.numbers = firstNumber;
+              setState(
+                () {
+                  Navigator.pop(context);
+                },
+              );
+              widget.mathematics = shuffle(widget.numbersModel);
+              for (var element in widget.mathematics) {
+                element.onSelected = null;
+              }
+            },
+            word: "Try again".tr(),
+          )
+        ],
+      ),
+    );
+  }
+
+  TextButton showDialogButton(
+      {required VoidCallback onTap, required String word}) {
+    return TextButton(
+      onPressed: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        child: Text(
+          word,
+          style: fontSourceSansProW400(appcolor: AppColors.C_000000),
         ),
       ),
     );

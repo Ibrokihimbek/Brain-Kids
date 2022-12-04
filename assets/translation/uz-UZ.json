@@ -20,11 +20,12 @@
     "Change the language" : "Tilni o'zgartiring",
     "Hi":"Salom",
     "Try again" : "Qayta boshlash",
-    "Return to the main window":"Asosiy oynaga qaytish",
+    "Return to the main page" : "Asosiy sahifaga qaytish",
     "Game over" : "O'yin tugadi",
     "Congratulations" : "Tabriklaymiz",
     "You have won" : "Siz g'alaba qozondingiz",
     "Mathematics" : "Matematika",
     "Arithmetic operations" : "Arifmetik amallar",
-    "Choose your numbers level" : "Sonlarni bilish darajangizni tanlang"
+    "Choose your numbers level" : "Sonlarni bilish darajangizni tanlang",
+    "Back to the math page" : "Matematika sahifasiga qaytish"
 }

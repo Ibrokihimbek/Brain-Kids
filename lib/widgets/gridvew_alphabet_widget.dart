@@ -78,7 +78,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                   ),
                   content: Column(
                     children: [
-                      Lottie.asset(AppLoties.lotieCongratulation),
+                      Lottie.asset(AppLoties.lottieCongratulation),
                       Text(
                         'You have won'.tr(),
                         style:
@@ -95,7 +95,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                       child: Container(
                         padding: const EdgeInsets.all(14),
                         child: Text(
-                          "Return to the main window".tr(),
+                          "Return to the main page".tr(),
                           style: fontSourceSansProW400(
                               appcolor: AppColors.C_000000),
                         ),
@@ -142,7 +142,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                   "Game over".tr(),
                   style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
                 ),
-                content: Lottie.asset(AppLoties.lotieCry),
+                content: Lottie.asset(AppLoties.lottieCry),
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -152,7 +152,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                     child: Container(
                       padding: const EdgeInsets.all(14),
                       child: Text(
-                        "Return to the main window".tr(),
+                        "Return to the main page".tr(),
                         style:
                             fontSourceSansProW400(appcolor: AppColors.C_000000),
                       ),
