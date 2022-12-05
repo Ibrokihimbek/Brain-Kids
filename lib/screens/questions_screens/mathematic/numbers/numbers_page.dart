@@ -63,7 +63,7 @@ class _NumberPageState extends State<NumberPage> {
               CategoryWidget(
                 onTap: () {
                   Navigator.pushNamed(context, RoutName.numbersCategory,
-                      arguments: {'numbersOneToTen': Numbers.numbersOneToTen});
+                      arguments: {'numbers': Numbers.numbersOneToTen});
                 },
                 buttonName: '1 - 10'.tr(),
               ),
@@ -71,20 +71,24 @@ class _NumberPageState extends State<NumberPage> {
               CategoryWidget(
                 onTap: () {
                   Navigator.pushNamed(context, RoutName.numbersCategory,
-                      arguments: {
-                        'numbersOneToTen': Numbers.numbersOneToFifty
-                      });
+                      arguments: {'numbers': Numbers.numbersOneToFifty});
                 },
                 buttonName: '1 - 50'.tr(),
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RoutName.numbersCategory,
+                      arguments: {'numbers': Numbers.numbersOneToHundred});
+                },
                 buttonName: '1 - 100'.tr(),
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RoutName.numbersCategory,
+                      arguments: {'numbers': Numbers.numbersOneToTwoHundred});
+                },
                 buttonName: '1 - 200'.tr(),
               ),
             ],

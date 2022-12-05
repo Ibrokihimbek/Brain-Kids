@@ -7,8 +7,8 @@ import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 
-class MathematicQuestionPage extends StatelessWidget {
-  const MathematicQuestionPage({super.key});
+class ArthimetikPage extends StatelessWidget {
+  const ArthimetikPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class MathematicQuestionPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        "Mathematics".tr(),
+                        "Arithmetic".tr(),
                         style:
                             fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                                 .copyWith(
@@ -47,19 +47,33 @@ class MathematicQuestionPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: queryHeight(context) * 0.2),
+              SizedBox(height: queryHeight(context) * 0.16),
+              Text(
+                'Math exercises'.tr(),
+                style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
+                    .copyWith(fontSize: 20),
+              ),
+              SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
-                onTap: () {
-                  Navigator.pushNamed(context, RoutName.arthimetik);
-                },
-                buttonName: 'Arithmetic operations'.tr(),
+                onTap: () {},
+                buttonName: "Divide the numbers  '/'".tr(),
+              ),
+              SizedBox(height: queryHeight(context) * 0.015),
+              CategoryWidget(
+                onTap: () {},
+                buttonName: "Multiplication of numbers  'x'".tr(),
+              ),
+              SizedBox(height: queryHeight(context) * 0.015),
+              CategoryWidget(
+                onTap: () {},
+                buttonName: "Subtract numbers  '-'".tr(),
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
                 onTap: () {
-                  Navigator.pushNamed(context, RoutName.numbers);
+                  Navigator.pushNamed(context, RoutName.mathCategory);
                 },
-                buttonName: 'Numbers'.tr(),
+                buttonName: "Adding numbers  '+'".tr(),
               ),
             ],
           ),

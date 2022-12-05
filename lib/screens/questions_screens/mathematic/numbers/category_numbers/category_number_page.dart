@@ -69,7 +69,7 @@ class _NumbersCategoryPageState extends State<NumbersCategoryPage> {
                 ),
                 NumbersGridViewWidget(
                   constantNumbers: 1,
-                  lastNumbers: 11,
+                  lastNumbers: numbersCategory.length + 1,
                   mathematics: numbersCategory,
                   numbers: 1,
                   numbersModel: widget.numbers,

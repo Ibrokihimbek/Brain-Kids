@@ -27,5 +27,12 @@
     "Mathematics" : "Matematika",
     "Arithmetic operations" : "Arifmetik amallar",
     "Choose your numbers level" : "Sonlarni bilish darajangizni tanlang",
-    "Back to the math page" : "Matematika sahifasiga qaytish"
+    "Back to the math page" : "Matematika sahifasiga qaytish",
+    "Arithmetic" : "Arifmetika",
+    "Adding numbers  '+'" : "Sonlarni qo'shish  '+'",
+    "Subtract numbers  '-'" : "Sonlarni ayirish  '-'",
+    "Divide the numbers  '/'" : "Sonlarni bo'lish  '/'",
+    "Multiplication of numbers  'x'" : "Sonlarni ko'paytirish  'x'",
+    "Math exercises": "Matematik mashqlar",
+    "Do the exercise" : "Mashqni bajaring"
 }
