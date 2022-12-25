@@ -1,9 +1,14 @@
+import 'dart:async';
 import 'dart:math';
 
+import 'package:countdown_progress_indicator/countdown_progress_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_brain/models/arthimetic/arthimetic_models.dart';
-import 'package:kids_brain/screens/questions_screens/mathematic/widgets/category_widget.dart';
+import 'package:kids_brain/screens/app_routes.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/progress_widget.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/timer_vidget.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/unswer_button_widget.dart';
+import 'package:kids_brain/service/shuffle.dart';
 import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/utils/app_media_query.dart';
@@ -17,18 +22,43 @@ class MathExercisesPage extends StatefulWidget {
 }
 
 class _MathExercisesPageState extends State<MathExercisesPage> {
+  final _controller = CountDownController();
+  Map<int, bool> userResult = {
+    0: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+  };
   final controller = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
   int currentIndex = 0;
   String buttontext = 'Next';
+  int randomOne = Random().nextInt(10);
+  int randomTwo = Random().nextInt(10);
+  int c = 0;
+
+  void generateNumbers() {
+    randomOne = Random().nextInt(10);
+    randomTwo = Random().nextInt(10);
+  }
+
+  String truAnsver = '';
+
   @override
   Widget build(BuildContext context) {
-    String word = '';
-    int a = ArthimeticModels.numbers[currentIndex].a;
-    a = Random().nextInt(10);
-    int b = ArthimeticModels.numbers[currentIndex].b;
-    b = Random().nextInt(10);
-    int c = a + b;
+    List number = [
+      randomOne + randomTwo,
+      Random().nextInt(20),
+      Random().nextInt(20),
+      Random().nextInt(20)
+    ];
+    c = randomOne + randomTwo;
+    number = shuffle(number);
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -40,8 +70,8 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Form(
-          key: _formKey,
+        body: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: SafeArea(
             child: Column(
               children: [
@@ -54,7 +84,7 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                     child: Column(
                       children: [
                         Text(
-                          "Do the exercise".tr(),
+                          "Do the task".tr(),
                           style: fontSourceSansProW600(
                                   appcolor: AppColors.C_FFFFFF)
                               .copyWith(
@@ -66,16 +96,25 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                     ),
                   ),
                 ),
+                timer(),
+                ProgressWidget(
+                  index: currentIndex + 1,
+                  questionLength: 10,
+                  currentWidth: (MediaQuery.of(context).size.width * 0.6) *
+                      ((currentIndex + 1) / 10),
+                ),
+                SizedBox(height: queryHeight(context) * 0.15),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '$a',
+                      '$randomOne',
                       style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                           .copyWith(
                         fontSize: MediaQuery.of(context).size.height * 0.05,
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: queryWidth(context) * 0.04),
                     Text(
                       '+',
                       style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
@@ -83,81 +122,35 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                         fontSize: MediaQuery.of(context).size.height * 0.05,
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: queryWidth(context) * 0.04),
                     Text(
-                      '$b',
+                      '$randomTwo',
                       style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                           .copyWith(
                         fontSize: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      '=',
-                      style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
-                          .copyWith(
-                        fontSize: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    SizedBox(
-                      width: 200,
-                      height: 60,
-                      child: TextFormField(
-                        style:
-                            fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
-                                .copyWith(
-                          fontSize: MediaQuery.of(context).size.height * 0.05,
-                        ),
-                        controller: controller,
-                        validator: (value) {
-                          if (value == null || value.isEmpty)
-                            return 'Please enter your password';
-                        },
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Javobni kiriting',
-                          hintStyle: fontSourceSansProW400(
-                                  appcolor: AppColors.C_A5A5A5)
-                              .copyWith(fontSize: 20),
-                        ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: queryHeight(context) * 0.5),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: InkWell(
-                    onTap: () {
-                      nextQuestion();
-                    },
-                    borderRadius:
-                        BorderRadius.circular(queryHeight(context) * 0.04),
-                    child: Container(
-                      width: double.infinity,
-                      height: queryHeight(context) * 0.07,
-                      decoration: BoxDecoration(
-                        color: AppColors.C_FDC642,
-                        borderRadius:
-                            BorderRadius.circular(queryHeight(context) * 0.04),
-                      ),
-                      child: Center(
-                        child: Text(
-                          buttontext,
-                          style: fontSourceSansProW600(
-                                  appcolor: AppColors.C_FFFFFF)
-                              .copyWith(
-                            fontSize: queryHeight(context) * 0.03,
-                          ),
-                        ),
-                      ),
+                SizedBox(height: queryHeight(context) * 0.06),
+                SizedBox(
+                  height: queryHeight(context) * 0.22,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: number.length,
+                    primary: false,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2.5 / 1.1,
                     ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return answersItem(
+                        number[index],
+                      );
+                    },
                   ),
                 ),
-                Text(word),
               ],
             ),
           ),
@@ -166,27 +159,51 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
     );
   }
 
+  Widget timer() {
+    return SizedBox(
+      height: 200,
+      width: 200,
+      child: CountDownProgressIndicator(
+        controller: _controller,
+        valueColor: Colors.red,
+        backgroundColor: Colors.blue,
+        initialPosition: 1,
+        duration: 2,
+        onComplete: () {
+          Navigator.pushReplacementNamed(context, RoutName.result,
+              arguments: {'result': userResult});
+        },
+      ),
+    );
+  }
+
+  Widget answersItem(number) {
+    return AnswerButtonWidget(
+      context: context,
+      onTap: () {
+        truAnsver = number.toString();
+        if (c.toString() == truAnsver) {
+          userResult[currentIndex] = true;
+        } else {
+          userResult[currentIndex] = false;
+        }
+
+        nextQuestion();
+      },
+      number: number,
+    );
+  }
+
   nextQuestion() {
     setState(() {
-      if (buttontext == 'FINISH') {
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ResultPage(
-        //       pageName: 'Question_Page',
-        //       userResult: userResult,
-        //     ),
-        //   ),
-        // );
-      }
-      if (currentIndex != ArthimeticModels.numbers.length - 1) {
-        // start = 15;
+      generateNumbers();
+      if (currentIndex != 10) {
+        truAnsver = '';
         currentIndex++;
       }
-      if (currentIndex == ArthimeticModels.numbers.length - 1) {
-        print("SALOM $currentIndex");
-        buttontext = 'FINISH';
-        print("HAYR ${ArthimeticModels.numbers.length - 1}");
+      if (currentIndex == 10) {
+        Navigator.pushReplacementNamed(context, RoutName.result,
+            arguments: {'result': userResult});
       }
     });
   }

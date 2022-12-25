@@ -5,6 +5,7 @@ import 'package:kids_brain/screens/questions_screens/arabic/arabic_question_page
 import 'package:kids_brain/screens/questions_screens/english/english_question_page.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/arthimetik_page.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/math_exercises_page.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/result_page.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/mathematic_question_page.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/numbers/category_numbers/category_number_page.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/numbers/numbers_page.dart';
@@ -27,6 +28,7 @@ abstract class RoutName {
   static const numbersCategory = 'numbersCategory';
   static const arthimetik = 'arthimetik';
   static const mathCategory = 'mathCategory';
+  static const result = 'result';
 }
 
 class AppRoutes {
@@ -65,8 +67,15 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => HomePage());
       case RoutName.numbers:
         return MaterialPageRoute(builder: (_) => NumberPage());
-        case RoutName.mathCategory:
+      case RoutName.mathCategory:
         return MaterialPageRoute(builder: (_) => MathExercisesPage());
+      case RoutName.result:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => ResultPage(
+            userResult: args['result'],
+          ),
+        );
       case RoutName.numbersCategory:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(

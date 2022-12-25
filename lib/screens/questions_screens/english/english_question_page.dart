@@ -6,7 +6,7 @@ import 'package:kids_brain/utils/app_colors.dart';
 import 'package:kids_brain/utils/app_images.dart';
 import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
-import 'package:kids_brain/widgets/gridvew_alphabet_widget.dart';
+import 'package:kids_brain/screens/questions_screens/widgets/gridvew_alphabet_widget.dart';
 
 class EnglishQuestionPage extends StatefulWidget {
   List<EnglishAlphabetModel> english;

@@ -34,5 +34,10 @@
     "Divide the numbers  '/'" : "Sonlarni bo'lish  '/'",
     "Multiplication of numbers  'x'" : "Sonlarni ko'paytirish  'x'",
     "Math exercises": "Matematik mashqlar",
-    "Do the exercise" : "Mashqni bajaring"
+    "Do the task" : "Mashqni bajaring",
+    "Your result is" : "Sizning natijangiz",
+    "Result" : "Natija",
+    "Start Again" : "Qaytadan boshlash",
+    "Task" : "Vazifa",
+    "True answers" : "To'g'ri javoblar"
 }
