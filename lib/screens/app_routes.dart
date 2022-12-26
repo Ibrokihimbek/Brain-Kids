@@ -68,7 +68,11 @@ class AppRoutes {
       case RoutName.numbers:
         return MaterialPageRoute(builder: (_) => NumberPage());
       case RoutName.mathCategory:
-        return MaterialPageRoute(builder: (_) => MathExercisesPage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (_) => MathExercisesPage(
+                  symbol: args['symbol'],
+                ));
       case RoutName.result:
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(

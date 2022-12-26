@@ -52,12 +52,12 @@ class ResultPage extends StatelessWidget {
                       return SizedBox(height: queryHeight(context) * 0.02);
                     },
                   ),
-                  SizedBox(height: queryHeight(context) * 0.05),
+                  SizedBox(height: queryHeight(context) * 0.03),
                   TrueAnswersLength(
                     context: context,
                     userResult: userResult,
                   ),
-                  SizedBox(height: queryHeight(context) * 0.01),
+                  SizedBox(height: queryHeight(context) * 0.02),
                   InkWell(
                     borderRadius: BorderRadius.circular(
                       queryHeight(context) * 0.03,
@@ -66,21 +66,24 @@ class ResultPage extends StatelessWidget {
                       Navigator.pushReplacementNamed(
                           context, RoutName.arthimetik);
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          queryHeight(context) * 0.03,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            queryHeight(context) * 0.03,
+                          ),
+                          color: AppColors.C_FDC642,
                         ),
-                        color: AppColors.C_FDC642,
-                      ),
-                      height: queryHeight(context) * 0.085,
-                      child: Center(
-                        child: Text(
-                          'Start Again'.tr(),
-                          style: fontSourceSansProW600(
-                                  appcolor: AppColors.C_FFFFFF)
-                              .copyWith(
-                            fontSize: queryHeight(context) * 0.03,
+                        height: queryHeight(context) * 0.085,
+                        child: Center(
+                          child: Text(
+                            'Start Again'.tr(),
+                            style: fontSourceSansProW600(
+                                    appcolor: AppColors.C_FFFFFF)
+                                .copyWith(
+                              fontSize: queryHeight(context) * 0.03,
+                            ),
                           ),
                         ),
                       ),

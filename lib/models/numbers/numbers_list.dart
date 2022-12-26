@@ -1,8 +1,8 @@
 class Numbers {
   int numbers;
-  bool? onSelected;
 
-  Numbers({required this.numbers, this.onSelected});
+
+  Numbers({required this.numbers});
 
   static List<Numbers> numbersOneToTen = [
     Numbers(numbers: 1),

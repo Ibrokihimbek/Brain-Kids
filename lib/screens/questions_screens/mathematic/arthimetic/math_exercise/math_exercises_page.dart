@@ -1,12 +1,10 @@
-import 'dart:async';
 import 'dart:math';
 
-import 'package:countdown_progress_indicator/countdown_progress_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kids_brain/screens/app_routes.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/progress_widget.dart';
-import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/timer_vidget.dart';
+import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/timer_widget.dart';
 import 'package:kids_brain/screens/questions_screens/mathematic/arthimetic/math_exercise/widgets/unswer_button_widget.dart';
 import 'package:kids_brain/service/shuffle.dart';
 import 'package:kids_brain/utils/app_colors.dart';
@@ -15,35 +13,36 @@ import 'package:kids_brain/utils/app_media_query.dart';
 import 'package:kids_brain/widgets/font_style_widget.dart';
 
 class MathExercisesPage extends StatefulWidget {
-  const MathExercisesPage({super.key});
+  final String symbol;
+  const MathExercisesPage({super.key, required this.symbol});
 
   @override
   State<MathExercisesPage> createState() => _MathExercisesPageState();
 }
 
 class _MathExercisesPageState extends State<MathExercisesPage> {
-  final _controller = CountDownController();
   Map<int, bool> userResult = {
     0: false,
     1: false,
     2: false,
     3: false,
     4: false,
+    5: false,
     6: false,
     7: false,
     8: false,
     9: false,
   };
-  final controller = TextEditingController();
+
   int currentIndex = 0;
   String buttontext = 'Next';
-  int randomOne = Random().nextInt(10);
-  int randomTwo = Random().nextInt(10);
-  int c = 0;
+  num randomOne = Random().nextInt(10) + 20;
+  num randomTwo = Random().nextInt(10) + 1;
+  num c = 0;
 
   void generateNumbers() {
-    randomOne = Random().nextInt(10);
-    randomTwo = Random().nextInt(10);
+    randomOne = Random().nextInt(10) + 20;
+    randomTwo = Random().nextInt(10) + 1;
   }
 
   String truAnsver = '';
@@ -51,12 +50,24 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
   @override
   Widget build(BuildContext context) {
     List number = [
-      randomOne + randomTwo,
+      widget.symbol == '+'
+          ? randomOne + randomTwo
+          : widget.symbol == '-'
+              ? randomOne - randomTwo
+              : widget.symbol == '/'
+                  ? randomOne ~/ randomTwo
+                  : randomOne * randomTwo,
       Random().nextInt(20),
       Random().nextInt(20),
       Random().nextInt(20)
     ];
-    c = randomOne + randomTwo;
+    c = widget.symbol == '+'
+        ? randomOne + randomTwo
+        : widget.symbol == '-'
+            ? randomOne - randomTwo
+            : widget.symbol == '/'
+                ? randomOne ~/ randomTwo
+                : randomOne * randomTwo;
     number = shuffle(number);
 
     return Container(
@@ -96,14 +107,14 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                     ),
                   ),
                 ),
-                timer(),
+                timer(context: context, userResult: userResult),
                 ProgressWidget(
                   index: currentIndex + 1,
                   questionLength: 10,
                   currentWidth: (MediaQuery.of(context).size.width * 0.6) *
                       ((currentIndex + 1) / 10),
                 ),
-                SizedBox(height: queryHeight(context) * 0.15),
+                SizedBox(height: queryHeight(context) * 0.1),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -116,7 +127,7 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                     ),
                     SizedBox(width: queryWidth(context) * 0.04),
                     Text(
-                      '+',
+                      widget.symbol,
                       style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                           .copyWith(
                         fontSize: MediaQuery.of(context).size.height * 0.05,
@@ -132,7 +143,7 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: queryHeight(context) * 0.06),
+                SizedBox(height: queryHeight(context) * 0.07),
                 SizedBox(
                   height: queryHeight(context) * 0.22,
                   child: GridView.builder(
@@ -155,24 +166,6 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget timer() {
-    return SizedBox(
-      height: 200,
-      width: 200,
-      child: CountDownProgressIndicator(
-        controller: _controller,
-        valueColor: Colors.red,
-        backgroundColor: Colors.blue,
-        initialPosition: 1,
-        duration: 2,
-        onComplete: () {
-          Navigator.pushReplacementNamed(context, RoutName.result,
-              arguments: {'result': userResult});
-        },
       ),
     );
   }

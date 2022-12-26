@@ -55,23 +55,39 @@ class ArthimetikPage extends StatelessWidget {
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
-                onTap: () {},
+                onTap: () {
+                  {
+                    Navigator.pushNamed(context, RoutName.mathCategory,
+                        arguments: {'symbol': '/'});
+                  }
+                },
                 buttonName: "Divide the numbers  '/'".tr(),
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
-                onTap: () {},
-                buttonName: "Multiplication of numbers  'x'".tr(),
-              ),
-              SizedBox(height: queryHeight(context) * 0.015),
-              CategoryWidget(
-                onTap: () {},
-                buttonName: "Subtract numbers  '-'".tr(),
+                onTap: () {
+                  {
+                    Navigator.pushNamed(context, RoutName.mathCategory,
+                        arguments: {'symbol': 'x'});
+                  }
+                },
+                buttonName: "Increase of numbers  'x'".tr(),
               ),
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
                 onTap: () {
-                  Navigator.pushNamed(context, RoutName.mathCategory);
+                  {
+                    Navigator.pushNamed(context, RoutName.mathCategory,
+                        arguments: {'symbol': '-'});
+                  }
+                },
+                buttonName: "Subtraction numbers  '-'".tr(),
+              ),
+              SizedBox(height: queryHeight(context) * 0.015),
+              CategoryWidget(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutName.mathCategory,
+                      arguments: {'symbol': '+'});
                 },
                 buttonName: "Adding numbers  '+'".tr(),
               ),

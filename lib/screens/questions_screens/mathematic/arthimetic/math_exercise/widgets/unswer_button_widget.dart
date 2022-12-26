@@ -6,7 +6,7 @@ import 'package:kids_brain/widgets/font_style_widget.dart';
 class AnswerButtonWidget extends StatelessWidget {
   final BuildContext context;
   final VoidCallback onTap;
-  final int number;
+  final num number;
   const AnswerButtonWidget({
     super.key,
     required this.context,

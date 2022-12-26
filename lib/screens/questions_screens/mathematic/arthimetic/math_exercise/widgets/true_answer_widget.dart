@@ -7,17 +7,12 @@ import 'package:kids_brain/widgets/font_style_widget.dart';
 class TrueAnswersLength extends StatelessWidget {
   final Map<int, bool> userResult;
   final BuildContext context;
-  const TrueAnswersLength({super.key, required this.context, required this.userResult});
+  const TrueAnswersLength(
+      {super.key, required this.context, required this.userResult});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          queryHeight(context) * 0.03,
-        ),
-        color: AppColors.C_FDC642,
-      ),
+    return SizedBox(
       height: queryHeight(context) * 0.085,
       width: double.infinity,
       child: Row(
