@@ -20,7 +20,7 @@ Widget timer({required BuildContext context, required userResult}) {
         fontSize: queryHeight(context) * 0.03,
       ),
       initialPosition: 1,
-      duration: 60,
+      duration: 120,
       text: 'Seconds'.tr(),
       labelTextStyle:
           fontSourceSansProW600(appcolor: AppColors.C_FFFFFF).copyWith(

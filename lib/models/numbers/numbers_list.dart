@@ -1,6 +1,6 @@
 class Numbers {
   int numbers;
-
+  bool? onSelected;
 
   Numbers({required this.numbers});
 

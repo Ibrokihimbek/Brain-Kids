@@ -57,7 +57,7 @@ class ArthimetikPage extends StatelessWidget {
               CategoryWidget(
                 onTap: () {
                   {
-                    Navigator.pushNamed(context, RoutName.mathCategory,
+                    Navigator.pushReplacementNamed(context, RoutName.mathCategory,
                         arguments: {'symbol': '/'});
                   }
                 },
@@ -67,7 +67,7 @@ class ArthimetikPage extends StatelessWidget {
               CategoryWidget(
                 onTap: () {
                   {
-                    Navigator.pushNamed(context, RoutName.mathCategory,
+                    Navigator.pushReplacementNamed(context, RoutName.mathCategory,
                         arguments: {'symbol': 'x'});
                   }
                 },
@@ -77,7 +77,7 @@ class ArthimetikPage extends StatelessWidget {
               CategoryWidget(
                 onTap: () {
                   {
-                    Navigator.pushNamed(context, RoutName.mathCategory,
+                    Navigator.pushReplacementNamed(context, RoutName.mathCategory,
                         arguments: {'symbol': '-'});
                   }
                 },
@@ -86,7 +86,7 @@ class ArthimetikPage extends StatelessWidget {
               SizedBox(height: queryHeight(context) * 0.015),
               CategoryWidget(
                 onTap: () {
-                  Navigator.pushNamed(context, RoutName.mathCategory,
+                  Navigator.pushReplacementNamed(context, RoutName.mathCategory,
                       arguments: {'symbol': '+'});
                 },
                 buttonName: "Adding numbers  '+'".tr(),

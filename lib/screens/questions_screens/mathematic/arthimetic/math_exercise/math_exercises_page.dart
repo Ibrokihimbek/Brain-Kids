@@ -41,7 +41,9 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
   num c = 0;
 
   void generateNumbers() {
-    randomOne = Random().nextInt(10) + 20;
+    randomOne = widget.symbol == 'x'
+        ? Random().nextInt(10) + 1
+        : Random().nextInt(10) + 20;
     randomTwo = Random().nextInt(10) + 1;
   }
 
@@ -56,10 +58,12 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
               ? randomOne - randomTwo
               : widget.symbol == '/'
                   ? randomOne ~/ randomTwo
-                  : randomOne * randomTwo,
+                  : randomOne.toString().length == 2
+                      ? (randomOne ~/ 10) * randomTwo
+                      : randomOne * randomTwo,
       Random().nextInt(20),
       Random().nextInt(20),
-      Random().nextInt(20)
+      Random().nextInt(20),
     ];
     c = widget.symbol == '+'
         ? randomOne + randomTwo
@@ -67,7 +71,9 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
             ? randomOne - randomTwo
             : widget.symbol == '/'
                 ? randomOne ~/ randomTwo
-                : randomOne * randomTwo;
+                : randomOne.toString().length == 2
+                    ? (randomOne ~/ 10) * randomTwo
+                    : randomOne * randomTwo;
     number = shuffle(number);
 
     return Container(
@@ -119,7 +125,11 @@ class _MathExercisesPageState extends State<MathExercisesPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '$randomOne',
+                      widget.symbol == "x" && randomOne.toString().length == 2
+                          ? "${randomOne ~/ 10}"
+                          : widget.symbol == "/"
+                              ? '${(randomTwo * c)}'
+                              : "$randomOne",
                       style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF)
                           .copyWith(
                         fontSize: MediaQuery.of(context).size.height * 0.05,

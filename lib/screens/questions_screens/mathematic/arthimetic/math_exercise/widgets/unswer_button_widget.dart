@@ -17,6 +17,9 @@ class AnswerButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(
+        queryHeight(context) * 0.04,
+      ),
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(

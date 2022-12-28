@@ -132,7 +132,7 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
             setState(() {});
 
             widget.letter = frisLetter;
-            await Future.delayed(const Duration(milliseconds: 800));
+            await Future.delayed(const Duration(milliseconds: 200));
 
             showDialog(
               barrierDismissible: false,

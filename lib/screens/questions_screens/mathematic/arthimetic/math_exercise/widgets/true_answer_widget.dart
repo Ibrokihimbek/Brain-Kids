@@ -25,7 +25,7 @@ class TrueAnswersLength extends StatelessWidget {
             ),
           ),
           Text(
-            ' - ${userResult.length} / ${trueAnswer()}',
+            ' - ${trueAnswer()} / ${userResult.length}',
             style: fontSourceSansProW600(appcolor: AppColors.C_FFFFFF).copyWith(
               fontSize: queryHeight(context) * 0.03,
             ),
