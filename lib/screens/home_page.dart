@@ -56,8 +56,7 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
           child: Column(
             children: [
-              Container(
-                decoration: const BoxDecoration(),
+              SizedBox(
                 width: double.infinity,
                 height: queryHeight(context) * 0.28,
                 child: Padding(

@@ -68,63 +68,11 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
                                 : (widget.letter.codeUnitAt(0) + 1);
             widget.letter = String.fromCharCode(fromascii);
             if (widget.letter == widget.lastLetter) {
-              showDialog(
-                barrierDismissible: false,
+              showDialogWidget(
+                winOrdefeat: 'You have won'.tr(),
+                lottie: AppLoties.lottieCongratulation,
+                congratulations: "Congratulations".tr(),
                 context: context,
-                builder: (ctx) => CupertinoAlertDialog(
-                  title: Text(
-                    "Congratulations".tr(),
-                    style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                  ),
-                  content: Column(
-                    children: [
-                      Lottie.asset(AppLoties.lottieCongratulation),
-                      Text(
-                        'You have won'.tr(),
-                        style:
-                            fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, RoutName.home, (route) => false);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        child: Text(
-                          "Return to the main page".tr(),
-                          style: fontSourceSansProW400(
-                              appcolor: AppColors.C_000000),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        widget.letter = frisLetter;
-                        setState(
-                          () {
-                            Navigator.pop(context);
-                          },
-                        );
-                        widget.alphabets = shuffle(widget.alphabetModel);
-                        for (var element in widget.alphabets) {
-                          element.onSelected = null;
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        child: Text(
-                          "Try again".tr(),
-                          style: fontSourceSansProW400(
-                              appcolor: AppColors.C_000000),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               );
             }
           } else {
@@ -134,53 +82,11 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
             widget.letter = frisLetter;
             await Future.delayed(const Duration(milliseconds: 200));
 
-            showDialog(
-              barrierDismissible: false,
+            showDialogWidget(
+              winOrdefeat: "Game over".tr(),
+              lottie: AppLoties.lottieCry,
+              congratulations: '',
               context: context,
-              builder: (ctx) => CupertinoAlertDialog(
-                title: Text(
-                  "Game over".tr(),
-                  style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-                ),
-                content: Lottie.asset(AppLoties.lottieCry),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, RoutName.home, (route) => false);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(14),
-                      child: Text(
-                        "Return to the main page".tr(),
-                        style:
-                            fontSourceSansProW400(appcolor: AppColors.C_000000),
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(
-                        () {
-                          Navigator.pop(context);
-                        },
-                      );
-                      widget.alphabets = shuffle(widget.alphabetModel);
-                      for (var element in widget.alphabets) {
-                        element.onSelected = null;
-                      }
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(14),
-                      child: Text(
-                        "Try again".tr(),
-                        style:
-                            fontSourceSansProW400(appcolor: AppColors.C_000000),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             );
           }
           setState(() {});
@@ -207,6 +113,75 @@ class _GridvewAlphabetsWidgetState extends State<GridvewAlphabetsWidget> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> showDialogWidget({
+    required String winOrdefeat,
+    required String lottie,
+    required String congratulations,
+    required BuildContext context,
+  }) {
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: CupertinoAlertDialog(
+            title: Text(
+              winOrdefeat.tr(),
+              style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
+            ),
+            content: Column(
+              children: [
+                Lottie.asset(lottie),
+                Text(
+                  congratulations.tr(),
+                  style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
+                ),
+              ],
+            ),
+            actions: [
+              showDialogButton(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutName.home, (route) => false);
+                },
+                word: "Return to the main page".tr(),
+              ),
+              showDialogButton(
+                onTap: () {
+                  setState(
+                    () {
+                      Navigator.pop(context);
+                    },
+                  );
+                  widget.alphabets = shuffle(widget.alphabetModel);
+                  for (var element in widget.alphabets) {
+                    element.onSelected = null;
+                  }
+                },
+                word: "Try again".tr(),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  TextButton showDialogButton(
+      {required VoidCallback onTap, required String word}) {
+    return TextButton(
+      onPressed: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        child: Text(
+          word,
+          style: fontSourceSansProW400(appcolor: AppColors.C_000000),
         ),
       ),
     );

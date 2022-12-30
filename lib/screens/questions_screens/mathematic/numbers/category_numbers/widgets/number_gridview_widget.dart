@@ -121,52 +121,57 @@ class _NumbersGridViewWidgetState extends State<NumbersGridViewWidget> {
     return showDialog(
       barrierDismissible: false,
       context: context,
-      builder: (ctx) => CupertinoAlertDialog(
-        title: Text(
-          winOrdefeat.tr(),
-          style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
-        ),
-        content: Column(
-          children: [
-            Lottie.asset(lottie),
-            Text(
-              congratulations.tr(),
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: CupertinoAlertDialog(
+            title: Text(
+              winOrdefeat.tr(),
               style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
             ),
-          ],
-        ),
-        actions: [
-          showDialogButton(
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, RoutName.home, (route) => false);
-            },
-            word: "Return to the main page".tr(),
-          ),
-          showDialogButton(
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, RoutName.numbers, (route) => false);
-            },
-            word: 'Back to the math page'.tr(),
-          ),
-          showDialogButton(
-            onTap: () {
-              widget.numbers = firstNumber;
-              setState(
-                () {
-                  Navigator.pop(context);
+            content: Column(
+              children: [
+                Lottie.asset(lottie),
+                Text(
+                  congratulations.tr(),
+                  style: fontSourceSansProW600(appcolor: AppColors.C_2855AE),
+                ),
+              ],
+            ),
+            actions: [
+              showDialogButton(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutName.home, (route) => false);
                 },
-              );
-              widget.mathematics = shuffle(widget.numbersModel);
-              for (var element in widget.mathematics) {
-                element.onSelected = null;
-              }
-            },
-            word: "Try again".tr(),
-          )
-        ],
-      ),
+                word: "Return to the main page".tr(),
+              ),
+              showDialogButton(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RoutName.numbers, (route) => false);
+                },
+                word: 'Back to the math page'.tr(),
+              ),
+              showDialogButton(
+                onTap: () {
+                  widget.numbers = firstNumber;
+                  setState(
+                    () {
+                      Navigator.pop(context);
+                    },
+                  );
+                  widget.mathematics = shuffle(widget.numbersModel);
+                  for (var element in widget.mathematics) {
+                    element.onSelected = null;
+                  }
+                },
+                word: "Try again".tr(),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
