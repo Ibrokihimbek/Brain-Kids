@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.davronbekov.kids_brain">
+    package="uz.davronbekov.brain_kids">
    <application
         android:label="Brain Kids"
         android:name="${applicationName}"
